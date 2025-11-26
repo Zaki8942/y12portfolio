@@ -7,24 +7,29 @@
     <style>
       /* --- 1. CSS Variables --- */
       :root {
-        --color-background: #f7e7ce;
-        --color-text-dark: #333333;
+        --color-background: #f9f3e9;
+        --color-text-dark: #2c2c2c;
         --color-primary: #bf8413;
-        --color-secondary: #cc922d;
+        --color-primary-light: #d4a347;
+        --color-secondary: #a67c00;
         --color-accent: #826428;
         --color-progress-bg: #e8d4b5;
-        --max-width: 600px;
+        --color-card-bg: #ffffff;
+        --max-width: 700px;
+        --border-radius: 12px;
+        --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       }
 
       /* --- 2. Base Styles --- */
       body {
         background-color: var(--color-background);
-        font-family: 'Verdana', sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: var(--color-text-dark);
         padding: 20px;
         margin: 0;
         min-height: 100vh;
         box-sizing: border-box;
+        line-height: 1.6;
       }
 
       .container {
@@ -37,14 +42,18 @@
       h1 {
         color: var(--color-primary);
         margin: 0;
-        font-size: 2.5em;
+        font-size: 2.8em;
+        font-weight: 700;
+        letter-spacing: -0.5px;
       }
 
       h2 {
         color: var(--color-secondary);
-        font-size: 1.5em;
-        padding-bottom: 5px;
-        border-bottom: 1px solid var(--color-progress-bg);
+        font-size: 1.6em;
+        font-weight: 600;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--color-progress-bg);
         opacity: 0;
         transform: translateX(-20px);
         animation: fadeInLeft 1s ease 0.8s forwards;
@@ -55,13 +64,17 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+        padding: 20px;
+        background-color: var(--color-card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
         opacity: 0;
         transform: translateY(-20px);
         animation: fadeInDown 1s ease forwards;
       }
 
-      /* Logo container (no circle) */
+      /* Logo container */
       .logo {
         margin-left: 10px;
         opacity: 0;
@@ -75,18 +88,30 @@
         height: auto;
         display: block;
         transition: transform 0.3s ease;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
       }
 
       .logo img:hover {
-        transform: scale(1.1);
+        transform: scale(1.1) rotate(5deg);
       }
 
       /* --- 5. Content Sections --- */
       .intro-text {
-        max-width: 600px;
+        max-width: 100%;
         opacity: 0;
         transform: translateY(20px);
         animation: fadeInUp 1s ease 1.1s forwards;
+        padding: 25px;
+        background-color: var(--color-card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        margin-bottom: 25px;
+        font-size: 1.1em;
+      }
+
+      .intro-text strong {
+        color: var(--color-primary);
+        font-weight: 600;
       }
 
       .completed-count {
@@ -95,11 +120,16 @@
         margin-top: 15px;
         opacity: 0;
         animation: fadeIn 1s ease 1.4s forwards;
+        font-size: 1.1em;
       }
 
       /* --- 6. Progress Bar & Counter --- */
       .progress-container {
-        margin: 30px 0;
+        margin: 40px 0;
+        padding: 25px;
+        background-color: var(--color-card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
         opacity: 0;
         animation: fadeIn 1s ease 1.4s forwards;
       }
@@ -107,31 +137,42 @@
       .progress-label {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 8px;
-        font-size: 1em;
+        margin-bottom: 15px;
+        font-size: 1.1em;
         color: var(--color-accent);
-        font-weight: bold;
+        font-weight: 600;
       }
 
       .progress-bar {
-        height: 14px;
+        height: 16px;
         background-color: var(--color-progress-bg);
-        border-radius: 7px;
+        border-radius: 8px;
         overflow: hidden;
+        margin-bottom: 15px;
       }
 
       .progress-fill {
         height: 100%;
-        background-color: var(--color-primary);
+        background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
         width: 0;
-        border-radius: 7px;
+        border-radius: 8px;
         transition: width 2s ease-out;
+        box-shadow: 0 2px 8px rgba(191, 132, 19, 0.3);
       }
 
       .counter {
         display: inline-block;
         font-weight: bold;
         color: var(--color-primary);
+        font-size: 1.2em;
+      }
+
+      .progress-percentage {
+        text-align: center;
+        font-weight: 600;
+        color: var(--color-accent);
+        margin-top: 10px;
+        font-size: 1.1em;
       }
 
       /* --- 7. Links --- */
@@ -139,10 +180,14 @@
         margin-top: 40px;
         opacity: 0;
         animation: fadeIn 1s ease 1.7s forwards;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
       }
 
       .link-item {
-        margin-bottom: 10px;
+        flex: 1;
+        min-width: 250px;
         opacity: 0;
         transform: translateX(-20px);
         animation: slideInRight 0.8s ease forwards;
@@ -155,37 +200,123 @@
         color: var(--color-secondary);
         text-decoration: none;
         position: relative;
-        transition: color 0.3s ease;
-        padding: 5px 0;
-        display: inline-block;
-        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 15px 20px;
+        display: block;
+        font-weight: 600;
+        background-color: var(--color-card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        text-align: center;
+        font-size: 1.1em;
       }
 
-      .link-item a:hover { color: var(--color-primary); }
+      .link-item a:hover {
+        color: var(--color-primary);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+
       .link-item a::after {
         content: '';
         position: absolute;
         width: 0;
-        height: 2px;
+        height: 3px;
         bottom: 0;
-        left: 0;
+        left: 50%;
+        transform: translateX(-50%);
         background-color: var(--color-primary);
         transition: width 0.3s ease;
       }
-      .link-item a:hover::after { width: 100%; }
+      
+      .link-item a:hover::after {
+        width: 80%;
+      }
 
       /* --- 8. Animations --- */
-      @keyframes fadeInDown { to { opacity: 1; transform: translateY(0); } }
-      @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-      @keyframes fadeInLeft { to { opacity: 1; transform: translateX(0); } }
-      @keyframes fadeIn { to { opacity: 1; } }
-      @keyframes logoAppear { to { opacity: 1; transform: scale(1) rotate(0); } }
-      @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+      @keyframes fadeInDown { 
+        to { 
+          opacity: 1; 
+          transform: translateY(0); 
+        } 
+      }
+      
+      @keyframes fadeInUp { 
+        to { 
+          opacity: 1; 
+          transform: translateY(0); 
+        } 
+      }
+      
+      @keyframes fadeInLeft { 
+        to { 
+          opacity: 1; 
+          transform: translateX(0); 
+        } 
+      }
+      
+      @keyframes fadeIn { 
+        to { 
+          opacity: 1; 
+        } 
+      }
+      
+      @keyframes logoAppear { 
+        to { 
+          opacity: 1; 
+          transform: scale(1) rotate(0); 
+        } 
+      }
+      
+      @keyframes slideInRight { 
+        to { 
+          opacity: 1; 
+          transform: translateX(0); 
+        } 
+      }
 
       /* --- 9. Responsive --- */
-      @media (max-width: 600px) {
-        .header { flex-direction: column; text-align: center; }
-        .logo { margin: 15px 0 0 0; }
+      @media (max-width: 768px) {
+        .header { 
+          flex-direction: column; 
+          text-align: center; 
+          padding: 25px 15px;
+        }
+        
+        .logo { 
+          margin: 20px 0 0 0; 
+        }
+        
+        h1 {
+          font-size: 2.2em;
+        }
+        
+        .links {
+          flex-direction: column;
+        }
+        
+        .progress-label {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+        
+        .intro-text, .progress-container {
+          padding: 20px 15px;
+        }
+        
+        h1 {
+          font-size: 1.8em;
+        }
+        
+        h2 {
+          font-size: 1.4em;
+        }
       }
     </style>
   </head>
@@ -217,6 +348,7 @@
         <div class="progress-bar">
           <div class="progress-fill" id="progressFill"></div>
         </div>
+        <div class="progress-percentage" id="progressPercentage">0%</div>
         <p class="completed-count">
           <strong>Number of completed problems:</strong> <span class="counter" data-target-value="74">0</span>
         </p>
@@ -235,6 +367,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const progressFill = document.getElementById('progressFill');
+        const progressPercentage = document.getElementById('progressPercentage');
         const counterElements = document.querySelectorAll('.counter');
         const totalProblemsElement = document.querySelector('.total-problems');
 
@@ -243,7 +376,21 @@
 
         if (progressFill && totalCount > 0) {
           const percentage = (solvedCount / totalCount) * 100;
-          setTimeout(() => { progressFill.style.width = `${percentage.toFixed(2)}%`; }, 1500);
+          setTimeout(() => { 
+            progressFill.style.width = `${percentage.toFixed(2)}%`; 
+            
+            // Animate percentage counter
+            let currentPercent = 0;
+            const percentTimer = setInterval(() => {
+              currentPercent += 1;
+              if (currentPercent >= percentage) {
+                currentPercent = percentage;
+                clearInterval(percentTimer);
+              }
+              progressPercentage.textContent = `${currentPercent.toFixed(1)}%`;
+            }, 2000 / percentage);
+            
+          }, 1500);
         }
 
         counterElements.forEach(counter => {
@@ -253,7 +400,10 @@
           setTimeout(() => {
             const timer = setInterval(() => {
               current += increment;
-              if (current >= target) { current = target; clearInterval(timer); }
+              if (current >= target) { 
+                current = target; 
+                clearInterval(timer); 
+              }
               counter.textContent = Math.floor(current);
             }, 25);
           }, 1400);
