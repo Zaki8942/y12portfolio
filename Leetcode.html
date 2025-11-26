@@ -43,7 +43,6 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       }
 
-      /* --- 3. Typography --- */
       h1 {
         color: var(--color-primary);
         margin: 0;
@@ -64,7 +63,6 @@
         font-weight: 600;
       }
 
-      /* --- 4. Header & Logo --- */
       .header {
         display: flex;
         justify-content: space-between;
@@ -77,7 +75,6 @@
         border-bottom: 1px solid var(--color-progress-bg);
       }
 
-      /* Logo container */
       .logo {
         margin-left: 10px;
         opacity: 0;
@@ -85,7 +82,6 @@
         animation: logoAppear 1s ease 0.5s forwards;
       }
 
-      /* Logo image */
       .logo img {
         width: 110px;
         height: auto;
@@ -98,7 +94,6 @@
         transform: scale(1.1) rotate(5deg);
       }
 
-      /* --- 5. Content Sections --- */
       .intro-text {
         max-width: 600px;
         opacity: 0;
@@ -126,7 +121,6 @@
         background-clip: text;
       }
 
-      /* --- 6. Difficulty Progress Bars --- */
       .progress-container {
         margin: 40px 0;
         opacity: 0;
@@ -171,18 +165,9 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
 
-      .badge-easy {
-        background-color: var(--color-easy);
-      }
-
-      .badge-medium {
-        background-color: var(--color-medium);
-        color: #000;
-      }
-
-      .badge-hard {
-        background-color: var(--color-hard);
-      }
+      .badge-easy { background-color: var(--color-easy); }
+      .badge-medium { background-color: var(--color-medium); color: #000; }
+      .badge-hard { background-color: var(--color-hard); }
 
       .progress-bar {
         height: 16px;
@@ -223,35 +208,14 @@
         opacity: 0.3;
       }
 
-      .fill-easy {
-        background: linear-gradient(90deg, var(--color-easy), #00d4b4);
-      }
+      .fill-easy { background: linear-gradient(90deg, var(--color-easy), #00d4b4); }
+      .fill-medium { background: linear-gradient(90deg, var(--color-medium), #ffd54a); }
+      .fill-hard { background: linear-gradient(90deg, var(--color-hard), #ff5c7c); }
 
-      .fill-medium {
-        background: linear-gradient(90deg, var(--color-medium), #ffd54a);
-      }
-
-      .fill-hard {
-        background: linear-gradient(90deg, var(--color-hard), #ff5c7c);
-      }
-
-      .counter {
-        display: inline-block;
-        font-weight: bold;
-        font-size: 1.1em;
-      }
-
-      .counter-easy {
-        color: var(--color-easy);
-      }
-
-      .counter-medium {
-        color: var(--color-medium);
-      }
-
-      .counter-hard {
-        color: var(--color-hard);
-      }
+      .counter { display: inline-block; font-weight: bold; font-size: 1.1em; }
+      .counter-easy { color: var(--color-easy); }
+      .counter-medium { color: var(--color-medium); }
+      .counter-hard { color: var(--color-hard); }
 
       .stats-container {
         display: flex;
@@ -272,22 +236,11 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
-      .stat-card:hover {
-        transform: translateY(-3px);
-      }
+      .stat-card:hover { transform: translateY(-3px); }
 
-      .stat-value {
-        font-size: 1.8em;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
+      .stat-value { font-size: 1.8em; font-weight: bold; margin-bottom: 5px; }
+      .stat-label { font-size: 0.9em; color: var(--color-text-secondary); }
 
-      .stat-label {
-        font-size: 0.9em;
-        color: var(--color-text-secondary);
-      }
-
-      /* --- 7. Links --- */
       .links {
         margin-top: 40px;
         opacity: 0;
@@ -332,18 +285,15 @@
         transition: left 0.5s;
       }
 
-      .link-item a:hover::before {
-        left: 100%;
-      }
+      .link-item a:hover::before { left: 100%; }
 
-      .link-item a:hover { 
+      .link-item a:hover {
         background-color: var(--color-primary);
         color: #000;
         transform: translateY(-3px);
         box-shadow: 0 6px 15px rgba(255, 161, 22, 0.3);
       }
 
-      /* --- 8. Animations --- */
       @keyframes fadeInDown { to { opacity: 1; transform: translateY(0); } }
       @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
       @keyframes fadeInLeft { to { opacity: 1; transform: translateX(0); } }
@@ -355,7 +305,6 @@
         100% { background-position: 20px 0; }
       }
 
-      /* --- 9. Responsive --- */
       @media (max-width: 600px) {
         .header { flex-direction: column; text-align: center; }
         .logo { margin: 15px 0 0 0; }
@@ -371,14 +320,25 @@
       <header class="header">
         <h1>LeetCode</h1>
         <div class="logo" role="img" aria-label="LeetCode Logo">
-          <img src="ImageFolder/LeetCodeLogo.png" alt="LeetCode Logo">
+          <img src="ImageFolder/LeetCodeLogo.png" alt="LeetCode Logo" />
         </div>
       </header>
+      <div style="text-align:center; margin-top: 30px;">
+        <img
+          src="https://leetcard.jacoblin.cool/Doubley81?theme=dark"
+          alt="LeetCode Stats Badge"
+        />
+      </div>
 
       <section>
         <h2>LeetCode and my experience:</h2>
         <p class="intro-text">
-          LeetCode has been something I have used alongside Project Euler in order to improve other areas of my coding skills such as hashmaps, nodes and binary trees as well as seeing other peoples solutions and thought processes. This has allowed me to better understand more difficult concepts for my level as well as risks of space and time complexity when dealing with larger data sets.
+          LeetCode has been something I have used alongside Project Euler in
+          order to improve other areas of my coding skills such as hashmaps,
+          nodes and binary trees as well as seeing other peoples solutions and
+          thought processes. This has allowed me to better understand more
+          difficult concepts for my level as well as risks of space and time
+          complexity when dealing with larger data sets.
         </p>
       </section>
 
@@ -390,7 +350,8 @@
               <span>Problems Solved:</span>
             </div>
             <span>
-              <span class="counter counter-easy" data-target-value="39">0</span> / 915
+              <span class="counter counter-easy" data-target-value="39">0</span>
+              / 915
             </span>
           </div>
           <div class="progress-bar">
@@ -405,7 +366,10 @@
               <span>Problems Solved:</span>
             </div>
             <span>
-              <span class="counter counter-medium" data-target-value="15">0</span> / 1956
+              <span class="counter counter-medium" data-target-value="15"
+                >0</span
+              >
+              / 1956
             </span>
           </div>
           <div class="progress-bar">
@@ -420,7 +384,8 @@
               <span>Problems Solved:</span>
             </div>
             <span>
-              <span class="counter counter-hard" data-target-value="3">0</span> / 887
+              <span class="counter counter-hard" data-target-value="3">0</span>
+              / 887
             </span>
           </div>
           <div class="progress-bar">
@@ -434,7 +399,9 @@
             <div class="stat-label">Easy Solved</div>
           </div>
           <div class="stat-card">
-            <div class="stat-value counter-medium" data-target-value="15">0</div>
+            <div class="stat-value counter-medium" data-target-value="15">
+              0
+            </div>
             <div class="stat-label">Medium Solved</div>
           </div>
           <div class="stat-card">
@@ -448,14 +415,24 @@
         </div>
 
         <p class="completed-count">
-          <strong>Total problems solved:</strong> 
+          <strong>Total problems solved:</strong>
           <span class="counter" id="totalCounter">0</span>
         </p>
+
+        <!-- LeetCode Badge -->
+        <div style="text-align:center; margin-top: 30px;">
+          <img
+            src="https://leetcard.jacoblin.cool/Doubley81?theme=dark"
+            alt="LeetCode Stats Badge"
+          />
+        </div>
       </section>
 
       <section class="links">
         <div class="link-item">
-          <a title="LeetCode" href="https://leetcode.com/">Visit LeetCode Website</a>
+          <a title="LeetCode" href="https://leetcode.com/"
+            >Visit LeetCode Website</a
+          >
         </div>
         <div class="link-item">
           <a title="Back" href="index.html">Back to Portfolio</a>
@@ -465,53 +442,36 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Progress bars
         const progressEasy = document.getElementById('progressEasy');
         const progressMedium = document.getElementById('progressMedium');
         const progressHard = document.getElementById('progressHard');
-        
-        // Counter elements
+
         const counterEasy = document.querySelector('.counter-easy');
         const counterMedium = document.querySelector('.counter-medium');
         const counterHard = document.querySelector('.counter-hard');
         const totalCounter = document.getElementById('totalCounter');
-        
-        // Stat elements
+
         const statEasy = document.querySelector('.stat-card:nth-child(1) .stat-value');
         const statMedium = document.querySelector('.stat-card:nth-child(2) .stat-value');
         const statHard = document.querySelector('.stat-card:nth-child(3) .stat-value');
         const totalStat = document.getElementById('totalStat');
-        
-        // Problem counts
+
         const easySolved = parseInt(counterEasy.getAttribute('data-target-value'));
         const mediumSolved = parseInt(counterMedium.getAttribute('data-target-value'));
         const hardSolved = parseInt(counterHard.getAttribute('data-target-value'));
-        
+
         const easyTotal = 915;
         const mediumTotal = 1956;
         const hardTotal = 887;
-        
+
         const totalSolved = easySolved + mediumSolved + hardSolved;
 
-        // Set progress bar widths after delay
         setTimeout(() => {
-          if (progressEasy && easyTotal > 0) {
-            const easyPercentage = (easySolved / easyTotal) * 100;
-            progressEasy.style.width = `${easyPercentage.toFixed(2)}%`;
-          }
-          
-          if (progressMedium && mediumTotal > 0) {
-            const mediumPercentage = (mediumSolved / mediumTotal) * 100;
-            progressMedium.style.width = `${mediumPercentage.toFixed(2)}%`;
-          }
-          
-          if (progressHard && hardTotal > 0) {
-            const hardPercentage = (hardSolved / hardTotal) * 100;
-            progressHard.style.width = `${hardPercentage.toFixed(2)}%`;
-          }
+          if (progressEasy && easyTotal > 0) progressEasy.style.width = `${(easySolved / easyTotal * 100).toFixed(2)}%`;
+          if (progressMedium && mediumTotal > 0) progressMedium.style.width = `${(mediumSolved / mediumTotal * 100).toFixed(2)}%`;
+          if (progressHard && hardTotal > 0) progressHard.style.width = `${(hardSolved / hardTotal * 100).toFixed(2)}%`;
         }, 1500);
 
-        // Animate counters
         const counters = [
           { element: counterEasy, target: easySolved },
           { element: counterMedium, target: mediumSolved },
@@ -526,14 +486,10 @@
         counters.forEach(counter => {
           let current = 0;
           const increment = counter.target / 60;
-          
           setTimeout(() => {
             const timer = setInterval(() => {
               current += increment;
-              if (current >= counter.target) { 
-                current = counter.target; 
-                clearInterval(timer); 
-              }
+              if (current >= counter.target) { current = counter.target; clearInterval(timer); }
               counter.element.textContent = Math.floor(current);
             }, 25);
           }, 1400);
