@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Euler Portfolio Showcase</title>
     <style>
-      /* --- 1. CSS Custom Properties (Variables) for theming --- */
+      /* --- 1. CSS Variables --- */
       :root {
-        --color-background: #f7e7ce; /* Light Tan */
+        --color-background: #f7e7ce;
         --color-text-dark: #333333;
-        --color-primary: #bf8413; /* Golden Brown */
-        --color-secondary: #cc922d; /* Lighter Gold */
-        --color-accent: #826428; /* Darker Brown */
+        --color-primary: #bf8413;
+        --color-secondary: #cc922d;
+        --color-accent: #826428;
         --color-progress-bg: #e8d4b5;
         --max-width: 600px;
       }
 
-      /* --- 2. Base Styles and Layout --- */
+      /* --- 2. Base Styles --- */
       body {
         background-color: var(--color-background);
         font-family: 'Verdana', sans-serif;
@@ -61,16 +61,24 @@
         animation: fadeInDown 1s ease forwards;
       }
 
+      /* Logo container (no circle) */
       .logo {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
         margin-left: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: white; /* Placeholder background */
         opacity: 0;
         transform: scale(0.8) rotate(-10deg);
         animation: logoAppear 1s ease 0.5s forwards;
+      }
+
+      /* Logo image */
+      .logo img {
+        width: 100px;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .logo img:hover {
+        transform: scale(1.1);
       }
 
       /* --- 5. Content Sections --- */
@@ -89,7 +97,7 @@
         animation: fadeIn 1s ease 1.4s forwards;
       }
 
-      /* --- 6. Progress Bar and Counter --- */
+      /* --- 6. Progress Bar & Counter --- */
       .progress-container {
         margin: 30px 0;
         opacity: 0;
@@ -140,13 +148,8 @@
         animation: slideInRight 0.8s ease forwards;
       }
 
-      .link-item:nth-child(1) {
-        animation-delay: 2s;
-      }
-
-      .link-item:nth-child(2) {
-        animation-delay: 2.3s;
-      }
+      .link-item:nth-child(1) { animation-delay: 2s; }
+      .link-item:nth-child(2) { animation-delay: 2.3s; }
 
       .link-item a {
         color: var(--color-secondary);
@@ -158,10 +161,7 @@
         font-weight: 500;
       }
 
-      .link-item a:hover {
-        color: var(--color-primary);
-      }
-
+      .link-item a:hover { color: var(--color-primary); }
       .link-item a::after {
         content: '';
         position: absolute;
@@ -172,45 +172,20 @@
         background-color: var(--color-primary);
         transition: width 0.3s ease;
       }
+      .link-item a:hover::after { width: 100%; }
 
-      .link-item a:hover::after {
-        width: 100%;
-      }
+      /* --- 8. Animations --- */
+      @keyframes fadeInDown { to { opacity: 1; transform: translateY(0); } }
+      @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+      @keyframes fadeInLeft { to { opacity: 1; transform: translateX(0); } }
+      @keyframes fadeIn { to { opacity: 1; } }
+      @keyframes logoAppear { to { opacity: 1; transform: scale(1) rotate(0); } }
+      @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
 
-      /* --- 8. Animations (Keyframes) --- */
-      @keyframes fadeInDown {
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      @keyframes fadeInUp {
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      @keyframes fadeInLeft {
-        to { opacity: 1; transform: translateX(0); }
-      }
-      
-      @keyframes fadeIn {
-        to { opacity: 1; }
-      }
-      
-      @keyframes logoAppear {
-        to { opacity: 1; transform: scale(1) rotate(0); }
-      }
-      
-      @keyframes slideInRight {
-        to { opacity: 1; transform: translateX(0); }
-      }
-
-      /* --- 9. Responsive Adjustments --- */
+      /* --- 9. Responsive --- */
       @media (max-width: 600px) {
-        .header {
-          flex-direction: column;
-          text-align: center;
-        }
-        .logo {
-          margin: 15px 0 0 0;
-        }
+        .header { flex-direction: column; text-align: center; }
+        .logo { margin: 15px 0 0 0; }
       }
     </style>
   </head>
@@ -218,16 +193,15 @@
     <main class="container">
       <header class="header">
         <h1>Project Euler</h1>
-        <div class="logo" role="img" aria-label="Stylized Project Euler Logo Placeholder">
-          <!-- Logo would go here -->
+        <div class="logo" role="img" aria-label="Stylized Project Euler Logo">
+          <img src="ImageFolder/Euler_logo.png" alt="Project Euler Logo">
         </div>
       </header>
 
       <section>
         <h2>About Project Euler and my experience:</h2>
-        
         <p class="intro-text">
-          Project Euler has been the best website I have used to level up my <strong>Java</strong> and <strong>Python</strong> coding skills. It has also helped me improve my critical thinking, problem solving, and learn different algorithms I would have never discovered on my own, especially in understanding <strong>time complexity</strong> and harder <strong> algorithm concepts.</strong>
+          Project Euler has been the best website I have used to level up my <strong>Java</strong> and <strong>Python</strong> coding skills. It has also helped me improve my critical thinking, problem solving, and learn different algorithms I would have never discovered on my own, especially in understanding <strong>time complexity</strong> and harder <strong>algorithm concepts</strong>.
         </p>
       </section>
 
@@ -236,7 +210,7 @@
           <span>Progress</span>
           <span>
             Problems Solved:
-            <span class="counter" data-target-value="74">0</span>/
+            <span class="counter" data-target-value="74">0</span> /
             <span class="total-problems" data-total-value="971">971</span>
           </span>
         </div>
@@ -257,44 +231,32 @@
         </div>
       </section>
     </main>
-    
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // --- Dynamic Counter and Progress Bar Animation ---
         const progressFill = document.getElementById('progressFill');
         const counterElements = document.querySelectorAll('.counter');
         const totalProblemsElement = document.querySelector('.total-problems');
-        
+
         const solvedCount = parseInt(counterElements[0].getAttribute('data-target-value'));
         const totalCount = parseInt(totalProblemsElement.getAttribute('data-total-value'));
 
         if (progressFill && totalCount > 0) {
-          // Calculate the percentage based on the new total (971)
           const percentage = (solvedCount / totalCount) * 100;
-          
-          // Set the final width for the progress bar after a small delay
-          setTimeout(() => {
-            progressFill.style.width = `${percentage.toFixed(2)}%`;
-          }, 1500); // Delay to sync with other fade-in animations
+          setTimeout(() => { progressFill.style.width = `${percentage.toFixed(2)}%`; }, 1500);
         }
 
-        // Animate the counter
         counterElements.forEach(counter => {
           const target = parseInt(counter.getAttribute('data-target-value'));
           let current = 0;
-          const increment = target / 60; // Better control over animation speed (60 frames)
-          
-          // Wait for the main content to fade in before starting the counter
+          const increment = target / 60;
           setTimeout(() => {
             const timer = setInterval(() => {
               current += increment;
-              if (current >= target) {
-                current = target;
-                clearInterval(timer);
-              }
+              if (current >= target) { current = target; clearInterval(timer); }
               counter.textContent = Math.floor(current);
-            }, 25); // ~1.5 seconds animation
-          }, 1400); // Start delay
+            }, 25);
+          }, 1400);
         });
       });
     </script>
