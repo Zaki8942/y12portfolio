@@ -15,7 +15,7 @@
         --color-accent: #21618c;
         --color-progress-bg: rgba(79, 172, 254, 0.2);
         --color-card-bg: rgba(16, 32, 48, 0.7);
-        --max-width: 1000px;
+        --max-width: 1200px;
         --border-radius: 12px;
         --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
@@ -68,7 +68,7 @@
       h1 {
         color: var(--color-primary);
         margin: 0;
-        font-size: 2.8em;
+        font-size: 3em;
         font-weight: 700;
         letter-spacing: -0.5px;
         background: linear-gradient(to right, #4facfe, #00f2fe);
@@ -79,7 +79,7 @@
 
       h2 {
         color: var(--color-secondary);
-        font-size: 1.6em;
+        font-size: 1.8em;
         font-weight: 600;
         margin-bottom: 20px;
         padding-bottom: 10px;
@@ -113,7 +113,7 @@
       }
 
       .logo img {
-        width: 120px;
+        width: 180px;
         height: auto;
         display: block;
         transition: transform 0.3s ease;
@@ -146,8 +146,8 @@
       /* --- 6. Image Gallery --- */
       .image-gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
         margin: 30px 0;
         opacity: 0;
         animation: fadeIn 1s ease 1.4s forwards;
@@ -161,6 +161,8 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         backdrop-filter: blur(10px);
         border: 1px solid rgba(64, 156, 255, 0.2);
+        display: flex;
+        flex-direction: column;
       }
 
       .gallery-item:hover {
@@ -170,16 +172,33 @@
 
       .gallery-item img {
         width: 100%;
-        height: 200px;
-        object-fit: cover;
+        height: 300px;
+        object-fit: contain;
         border-bottom: 1px solid rgba(64, 156, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 10px;
       }
 
       .gallery-caption {
-        padding: 15px;
+        padding: 20px;
         text-align: center;
         font-weight: 500;
         color: var(--color-secondary);
+        font-size: 1.1em;
+      }
+
+      /* Code Images Container */
+      .code-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+
+      .code-container img {
+        height: 280px;
+        border-radius: 8px;
+        border: 1px solid rgba(64, 156, 255, 0.3);
       }
 
       /* --- 7. Links --- */
@@ -238,7 +257,10 @@
       @media (max-width: 768px) {
         .header { flex-direction: column; text-align: center; }
         .logo { margin: 20px 0 0 0; }
+        .logo img { width: 140px; }
         .image-gallery { grid-template-columns: 1fr; }
+        .gallery-item img { height: 250px; }
+        .code-container img { height: 220px; }
       }
     </style>
   </head>
@@ -271,8 +293,10 @@
             <div class="gallery-caption">Energy Conservation Test</div>
           </div>
           <div class="gallery-item">
-            <img src="ImageFolder/Rebound_Resuls/Code1" alt="Simulation Code Part 1">
-            <img src="ImageFolder/Rebound_Resuls/Code2.png" alt="Simulation Code Part 2">
+            <div class="code-container">
+              <img src="ImageFolder/Rebound_Resuls/Code1" alt="Simulation Code Part 1">
+              <img src="ImageFolder/Rebound_Resuls/Code2.png" alt="Simulation Code Part 2">
+            </div>
             <div class="gallery-caption">Simulation Code</div>
           </div>
         </div>
