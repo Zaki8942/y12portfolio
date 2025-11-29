@@ -99,6 +99,7 @@
         margin-bottom: 40px;
         width: 100%;
         gap: 40px;
+        flex-wrap: wrap;
       }
 
       .project-square {
@@ -120,14 +121,20 @@
         border: 2px solid transparent;
       }
 
-      .project-square:nth-child(1) {
+      /* Project colors by class */
+      .project-square.euler {
         animation-delay: 0.9s;
         background: linear-gradient(135deg, #FF6B35, #FF8E53);
       }
 
-      .project-square:nth-child(2) {
+      .project-square.leetcode {
         animation-delay: 1.1s;
         background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      }
+
+      .project-square.rebound {
+        animation-delay: 1.3s;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       }
 
       .project-square:hover {
@@ -170,6 +177,42 @@
       .euler-icon {
         color: #FFD700; /* Gold for pi symbol */
         font-weight: bold;
+      }
+
+      .rebound-icon {
+        color: #00f2fe;
+        font-weight: bold;
+        position: relative;
+      }
+
+      .rebound-icon::before {
+        content: "●";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5rem;
+        color: #4facfe;
+        text-shadow: 0 0 15px #4facfe;
+      }
+
+      .rebound-icon::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #00f2fe 0%, transparent 70%);
+        opacity: 0.3;
+        animation: pulse 3s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+        50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
       }
 
       .project-square:hover .square-icon {
@@ -295,17 +338,24 @@
       <h2 class="section-title">My Projects</h2>
       
       <div class="squares-container">
-        <a href="Euler.html" class="project-square">
+        <a href="rebound.html" class="project-square rebound">
+          <div class="square-icon rebound-icon">◯</div>
+          <div class="square-title">REBOUND</div>
+          <div class="square-subtitle">Astrophysics Simulations</div>
+        </a>
+        <a href="Euler.html" class="project-square euler">
           <div class="square-icon euler-icon">π</div>
           <div class="square-title">Project Euler</div>
           <div class="square-subtitle"></div>
         </a>
         
-        <a href="Leetcode.html" class="project-square">
+        <a href="Leetcode.html" class="project-square leetcode">
           <div class="square-icon leetcode-icon">{ }</div>
           <div class="square-title">LeetCode</div>
           <div class="square-subtitle"></div>
         </a>
+        
+        
       </div>
       
       <h2 class="section-title">My Skills</h2>
