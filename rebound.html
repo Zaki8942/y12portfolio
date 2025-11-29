@@ -352,7 +352,6 @@
               <h3>Simulation Code</h3>
               <div class="code-container">
                 <div class="code-line"><span class="code-comment"># REBOUND N-Body Simulation for Planetary Orbits</span></div>
-                <div class="code-line"><span class="code-comment"># Simulates elliptical orbits with varying mass ratios</span></div>
                 <div class="code-line"><br></div>
                 
                 <div class="code-line"><span class="code-keyword">import</span> rebound</div>
@@ -366,21 +365,17 @@
                 <div class="code-line">    sim.integrator = <span class="code-string">"ias15"</span>  <span class="code-comment"># High accuracy integrator</span></div>
                 <div class="code-line">    sim.G = <span class="code-number">1.0</span>  <span class="code-comment"># Gravitational constant in appropriate units</span></div>
                 <div class="code-line">    <br></div>
-                <div class="code-line">    <span class="code-comment"># Add central star</span></div>
                 <div class="code-line">    sim.add(m=star_mass)</div>
                 <div class="code-line">    <br></div>
-                <div class="code-line">    <span class="code-comment"># Add planet with elliptical orbit</span></div>
                 <div class="code-line">    sim.add(m=planet_mass, a=<span class="code-number">1.0</span>, e=<span class="code-number">0.1</span>)</div>
                 <div class="code-line">    <br></div>
-                <div class="code-line">    <span class="code-comment"># Move to center of mass frame</span></div>
                 <div class="code-line">    sim.move_to_com()</div>
                 <div class="code-line">    <br></div>
                 <div class="code-line">    <span class="code-keyword">return</span> sim</div>
                 <div class="code-line"><br></div>
                 
                 <div class="code-line"><span class="code-keyword">def</span> <span class="code-function">run_simulation</span>(sim, duration=<span class="code-number">100</span>):</div>
-                <div class="code-line">    <span class="code-comment"># Set up arrays to store results</span></div>
-                <div class="code-line">    times = np.linspace(<span class="code-number">0</span>, duration*<span class="code-number">2</span>*np.pi, <span class="code-number">1000</span>)</div>
+                 <div class="code-line">    times = np.linspace(<span class="code-number">0</span>, duration*<span class="code-number">2</span>*np.pi, <span class="code-number">1000</span>)</div>
                 <div class="code-line">    positions = []</div>
                 <div class="code-line">    energies = []</div>
                 <div class="code-line">    <br></div>
@@ -402,8 +397,7 @@
                 <div class="code-line"><br></div>
                 
                 <div class="code-line"><span class="code-keyword">def</span> <span class="code-function">plot_results</span>(positions, energies, times):</div>
-                <div class="code-line">    <span class="code-comment"># Create figure with subplots</span></div>
-                <div class="code-line">    fig, (ax1, ax2) = plt.subplots(<span class="code-number">1</span>, <span class="code-number">2</span>, figsize=(<span class="code-number">12</span>, <span class="code-number">5</span>))</div>
+                 <div class="code-line">    fig, (ax1, ax2) = plt.subplots(<span class="code-number">1</span>, <span class="code-number">2</span>, figsize=(<span class="code-number">12</span>, <span class="code-number">5</span>))</div>
                 <div class="code-line">    <br></div>
                 <div class="code-line">    <span class="code-comment"># Plot orbital trajectory</span></div>
                 <div class="code-line">    ax1.plot(positions[:, <span class="code-number">0</span>], positions[:, <span class="code-number">1</span>], <span class="code-string">'b-'</span>, linewidth=<span class="code-number">1</span>)</div>
@@ -427,7 +421,6 @@
                 <div class="code-line">    plt.show()</div>
                 <div class="code-line"><br></div>
                 
-                <div class="code-line"><span class="code-comment"># Main execution</span></div>
                 <div class="code-line"><span class="code-keyword">if</span> __name__ == <span class="code-string">"__main__"</span>:</div>
                 <div class="code-line">    <span class="code-comment"># Test different mass ratios from 0.3 to 1</span></div>
                 <div class="code-line">    mass_ratios = np.linspace(<span class="code-number">0.3</span>, <span class="code-number">1.0</span>, <span class="code-number">5</span>)</div>
