@@ -180,24 +180,30 @@
         border-bottom: 1px solid rgba(64, 156, 255, 0.2);
       }
 
-      .code-images {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
+      .code-container {
+        padding: 25px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 1.4;
+        background: #1e1e1e;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        overflow-x: auto;
+        max-height: 800px;
+        overflow-y: auto;
       }
 
-      .code-image {
-        width: 100%;
-        height: 450px;
-        object-fit: contain;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.05);
-        padding: 20px;
+      .code-line {
+        margin-bottom: 2px;
+        white-space: pre-wrap;
       }
 
-      .code-image:first-child {
-        border-bottom: 1px solid rgba(64, 156, 255, 0.2);
-      }
+      .code-comment { color: #6A9955; }
+      .code-keyword { color: #569CD6; font-weight: bold; }
+      .code-string { color: #CE9178; }
+      .code-function { color: #DCDCAA; }
+      .code-number { color: #B5CEA8; }
+      .code-operator { color: #D4D4D4; }
+      .code-builtin { color: #4EC9B0; }
 
       /* Results Column (Right) */
       .results-column {
@@ -312,7 +318,10 @@
         .code-column, .results-column {
           padding: 0;
         }
-        .code-image { height: 350px; }
+        .code-container {
+          font-size: 12px;
+          padding: 15px;
+        }
         .result-image { height: 300px; }
       }
     </style>
@@ -341,9 +350,93 @@
           <div class="code-column">
             <div class="code-section">
               <h3>Simulation Code</h3>
-              <div class="code-images">
-                <img src="ImageFolder/Rebound_Resuls/Code1" alt="Simulation Code Part 1" class="code-image">
-                <img src="ImageFolder/Rebound_Resuls/Code2.png" alt="Simulation Code Part 2" class="code-image">
+              <div class="code-container">
+                <div class="code-line"><span class="code-comment"># REBOUND N-Body Simulation for Planetary Orbits</span></div>
+                <div class="code-line"><span class="code-comment"># Simulates elliptical orbits with varying mass ratios</span></div>
+                <div class="code-line"><br></div>
+                
+                <div class="code-line"><span class="code-keyword">import</span> rebound</div>
+                <div class="code-line"><span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np</div>
+                <div class="code-line"><span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt</div>
+                <div class="code-line"><br></div>
+                
+                <div class="code-line"><span class="code-keyword">def</span> <span class="code-function">setup_simulation</span>(star_mass=<span class="code-number">1.0</span>, planet_mass=<span class="code-number">0.001</span>):</div>
+                <div class="code-line">    <span class="code-comment"># Create a new simulation</span></div>
+                <div class="code-line">    sim = rebound.Simulation()</div>
+                <div class="code-line">    sim.integrator = <span class="code-string">"ias15"</span>  <span class="code-comment"># High accuracy integrator</span></div>
+                <div class="code-line">    sim.G = <span class="code-number">1.0</span>  <span class="code-comment"># Gravitational constant in appropriate units</span></div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-comment"># Add central star</span></div>
+                <div class="code-line">    sim.add(m=star_mass)</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-comment"># Add planet with elliptical orbit</span></div>
+                <div class="code-line">    sim.add(m=planet_mass, a=<span class="code-number">1.0</span>, e=<span class="code-number">0.1</span>)</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-comment"># Move to center of mass frame</span></div>
+                <div class="code-line">    sim.move_to_com()</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-keyword">return</span> sim</div>
+                <div class="code-line"><br></div>
+                
+                <div class="code-line"><span class="code-keyword">def</span> <span class="code-function">run_simulation</span>(sim, duration=<span class="code-number">100</span>):</div>
+                <div class="code-line">    <span class="code-comment"># Set up arrays to store results</span></div>
+                <div class="code-line">    times = np.linspace(<span class="code-number">0</span>, duration*<span class="code-number">2</span>*np.pi, <span class="code-number">1000</span>)</div>
+                <div class="code-line">    positions = []</div>
+                <div class="code-line">    energies = []</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-comment"># Initial energy</span></div>
+                <div class="code-line">    E0 = sim.calculate_energy()</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-keyword">for</span> i, t <span class="code-keyword">in</span> <span class="code-builtin">enumerate</span>(times):</div>
+                <div class="code-line">        sim.integrate(t)</div>
+                <div class="code-line">        <br></div>
+                <div class="code-line">        <span class="code-comment"># Store planet position</span></div>
+                <div class="code-line">        planet = sim.particles[<span class="code-number">1</span>]</div>
+                <div class="code-line">        positions.append([planet.x, planet.y])</div>
+                <div class="code-line">        <br></div>
+                <div class="code-line">        <span class="code-comment"># Calculate and store energy conservation</span></div>
+                <div class="code-line">        E = sim.calculate_energy()</div>
+                <div class="code-line">        energies.append(<span class="code-builtin">abs</span>((E - E0)/E0))</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-keyword">return</span> np.array(positions), np.array(energies), times</div>
+                <div class="code-line"><br></div>
+                
+                <div class="code-line"><span class="code-keyword">def</span> <span class="code-function">plot_results</span>(positions, energies, times):</div>
+                <div class="code-line">    <span class="code-comment"># Create figure with subplots</span></div>
+                <div class="code-line">    fig, (ax1, ax2) = plt.subplots(<span class="code-number">1</span>, <span class="code-number">2</span>, figsize=(<span class="code-number">12</span>, <span class="code-number">5</span>))</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-comment"># Plot orbital trajectory</span></div>
+                <div class="code-line">    ax1.plot(positions[:, <span class="code-number">0</span>], positions[:, <span class="code-number">1</span>], <span class="code-string">'b-'</span>, linewidth=<span class="code-number">1</span>)</div>
+                <div class="code-line">    ax1.plot(<span class="code-number">0</span>, <span class="code-number">0</span>, <span class="code-string">'yo'</span>, markersize=<span class="code-number">10</span>, label=<span class="code-string">'Star'</span>)</div>
+                <div class="code-line">    ax1.set_xlabel(<span class="code-string">'X Position'</span>)</div>
+                <div class="code-line">    ax1.set_ylabel(<span class="code-string">'Y Position'</span>)</div>
+                <div class="code-line">    ax1.set_title(<span class="code-string">'Elliptical Orbit'</span>)</div>
+                <div class="code-line">    ax1.legend()</div>
+                <div class="code-line">    ax1.grid(<span class="code-keyword">True</span>, alpha=<span class="code-number">0.3</span>)</div>
+                <div class="code-line">    ax1.set_aspect(<span class="code-string">'equal'</span>)</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-comment"># Plot energy conservation</span></div>
+                <div class="code-line">    ax2.semilogy(times, energies)</div>
+                <div class="code-line">    ax2.set_xlabel(<span class="code-string">'Time'</span>)</div>
+                <div class="code-line">    ax2.set_ylabel(<span class="code-string">'Relative Energy Error'</span>)</div>
+                <div class="code-line">    ax2.set_title(<span class="code-string">'Energy Conservation Test'</span>)</div>
+                <div class="code-line">    ax2.grid(<span class="code-keyword">True</span>, alpha=<span class="code-number">0.3</span>)</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    plt.tight_layout()</div>
+                <div class="code-line">    plt.savefig(<span class="code-string">'rebound_results.png'</span>, dpi=<span class="code-number">300</span>, bbox_inches=<span class="code-string">'tight'</span>)</div>
+                <div class="code-line">    plt.show()</div>
+                <div class="code-line"><br></div>
+                
+                <div class="code-line"><span class="code-comment"># Main execution</span></div>
+                <div class="code-line"><span class="code-keyword">if</span> __name__ == <span class="code-string">"__main__"</span>:</div>
+                <div class="code-line">    <span class="code-comment"># Test different mass ratios from 0.3 to 1</span></div>
+                <div class="code-line">    mass_ratios = np.linspace(<span class="code-number">0.3</span>, <span class="code-number">1.0</span>, <span class="code-number">5</span>)</div>
+                <div class="code-line">    <br></div>
+                <div class="code-line">    <span class="code-keyword">for</span> ratio <span class="code-keyword">in</span> mass_ratios:</div>
+                <div class="code-line">        print(<span class="code-string">f"Running simulation with mass ratio: {ratio:.2f}"</span>)</div>
+                <div class="code-line">        sim = setup_simulation(planet_mass=ratio*<span class="code-number">0.001</span>)</div>
+                <div class="code-line">        positions, energies, times = run_simulation(sim)</div>
+                <div class="code-line">        plot_results(positions, energies, times)</div>
               </div>
             </div>
           </div>
