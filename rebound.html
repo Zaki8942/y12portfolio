@@ -15,7 +15,7 @@
         --color-accent: #21618c;
         --color-progress-bg: rgba(79, 172, 254, 0.2);
         --color-card-bg: rgba(16, 32, 48, 0.7);
-        --max-width: 1200px;
+        --max-width: 1400px;
         --border-radius: 12px;
         --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
@@ -143,17 +143,63 @@
         font-weight: 600;
       }
 
-      /* --- 6. Image Gallery --- */
-      .image-gallery {
+      /* --- 6. Two Column Layout --- */
+      .content-columns {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: 2fr 1fr;
         gap: 30px;
         margin: 30px 0;
         opacity: 0;
         animation: fadeIn 1s ease 1.4s forwards;
       }
 
-      .gallery-item {
+      /* Code Column (Left) */
+      .code-column {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .code-section {
+        background: var(--color-card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(64, 156, 255, 0.2);
+        padding: 25px;
+      }
+
+      .code-section h3 {
+        color: var(--color-secondary);
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 1.4em;
+        text-align: center;
+      }
+
+      .code-images {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .code-image {
+        width: 100%;
+        height: 400px;
+        object-fit: contain;
+        border-radius: 8px;
+        border: 1px solid rgba(64, 156, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      /* Results Column (Right) */
+      .results-column {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .result-item {
         background: var(--color-card-bg);
         border-radius: var(--border-radius);
         box-shadow: var(--box-shadow);
@@ -165,40 +211,26 @@
         flex-direction: column;
       }
 
-      .gallery-item:hover {
+      .result-item:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
       }
 
-      .gallery-item img {
+      .result-image {
         width: 100%;
-        height: 300px;
+        height: 250px;
         object-fit: contain;
         border-bottom: 1px solid rgba(64, 156, 255, 0.2);
         background-color: rgba(255, 255, 255, 0.05);
         padding: 10px;
       }
 
-      .gallery-caption {
+      .result-caption {
         padding: 20px;
         text-align: center;
         font-weight: 500;
         color: var(--color-secondary);
         font-size: 1.1em;
-      }
-
-      /* Code Images Container */
-      .code-container {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-      }
-
-      .code-container img {
-        height: 280px;
-        border-radius: 8px;
-        border: 1px solid rgba(64, 156, 255, 0.3);
       }
 
       /* --- 7. Links --- */
@@ -258,9 +290,9 @@
         .header { flex-direction: column; text-align: center; }
         .logo { margin: 20px 0 0 0; }
         .logo img { width: 140px; }
-        .image-gallery { grid-template-columns: 1fr; }
-        .gallery-item img { height: 250px; }
-        .code-container img { height: 220px; }
+        .content-columns { grid-template-columns: 1fr; }
+        .code-image { height: 300px; }
+        .result-image { height: 200px; }
       }
     </style>
   </head>
@@ -282,22 +314,29 @@
           As I started to research more into <strong>astrophysics</strong> I started to realise the importance of <strong>computer programming</strong> in order to handle and sort through data as well as presenting it in a way that could return understandable information, because of this I downloaded <strong>rebound</strong> and started playing around with values coming up with a <strong>simulator for 0.3 to 1 mass ratio of a star and planet to map the planets elliptical orbit shown below.</strong>
         </p>
 
-        <!-- Image Gallery Section -->
-        <div class="image-gallery">
-          <div class="gallery-item">
-            <img src="ImageFolder/Rebound_Resuls/Eliptical orbit.png" alt="Elliptical Orbit Simulation">
-            <div class="gallery-caption">Elliptical Orbit Simulation</div>
-          </div>
-          <div class="gallery-item">
-            <img src="ImageFolder/Rebound_Resuls/EnergyTest.png" alt="Energy Conservation Test">
-            <div class="gallery-caption">Energy Conservation Test</div>
-          </div>
-          <div class="gallery-item">
-            <div class="code-container">
-              <img src="ImageFolder/Rebound_Resuls/Code1" alt="Simulation Code Part 1">
-              <img src="ImageFolder/Rebound_Resuls/Code2.png" alt="Simulation Code Part 2">
+        <!-- Two Column Layout -->
+        <div class="content-columns">
+          <!-- Code Column (Left) -->
+          <div class="code-column">
+            <div class="code-section">
+              <h3>Simulation Code</h3>
+              <div class="code-images">
+                <img src="ImageFolder/Rebound_Resuls/Code1" alt="Simulation Code Part 1" class="code-image">
+                <img src="ImageFolder/Rebound_Resuls/Code2.png" alt="Simulation Code Part 2" class="code-image">
+              </div>
             </div>
-            <div class="gallery-caption">Simulation Code</div>
+          </div>
+
+          <!-- Results Column (Right) -->
+          <div class="results-column">
+            <div class="result-item">
+              <img src="ImageFolder/Rebound_Resuls/Eliptical orbit.png" alt="Elliptical Orbit Simulation" class="result-image">
+              <div class="result-caption">Elliptical Orbit Simulation</div>
+            </div>
+            <div class="result-item">
+              <img src="ImageFolder/Rebound_Resuls/EnergyTest.png" alt="Energy Conservation Test" class="result-image">
+              <div class="result-caption">Energy Conservation Test</div>
+            </div>
           </div>
         </div>
       </section>
@@ -344,7 +383,7 @@
 
       // Simple animation triggers
       document.addEventListener('DOMContentLoaded', function() {
-        const animatedElements = document.querySelectorAll('.intro-text, .image-gallery, .links');
+        const animatedElements = document.querySelectorAll('.intro-text, .content-columns, .links');
         animatedElements.forEach(el => {
           if (el.style.animation) {
             el.style.animation = el.style.animation;
