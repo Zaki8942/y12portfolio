@@ -241,7 +241,7 @@ const Rebound = () => {
                 }}
               >
                 <div
-                  className="w-full h-[200px] flex items-center justify-center p-6"
+                  className="w-full h-[400px] flex items-center justify-center p-6"
                   style={{
                     background:
                       "linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,32,48,0.9))",
