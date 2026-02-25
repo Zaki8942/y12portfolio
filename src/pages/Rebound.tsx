@@ -75,6 +75,19 @@ function createStars(container: HTMLDivElement) {
 
 const Rebound = () => {
   const starsRef = useRef<HTMLDivElement>(null);
+  const basePath = import.meta.env.BASE_URL;
+  const resultImages = [
+    {
+      title: "Elliptical Orbit Simulation",
+      alt: "Elliptical orbit simulation plot",
+      src: `${basePath}rebound/elliptical-orbit-simulation.png`,
+    },
+    {
+      title: "Energy Conservation Test",
+      alt: "Energy conservation error plot",
+      src: `${basePath}rebound/energy-conservation-test.png`,
+    },
+  ];
 
   useEffect(() => {
     if (starsRef.current) {
@@ -218,10 +231,7 @@ const Rebound = () => {
 
           {/* Results */}
           <div className="flex flex-col gap-9">
-            {[
-              { title: "Elliptical Orbit Simulation", alt: "Elliptical Orbit" },
-              { title: "Energy Conservation Test", alt: "Energy Conservation" },
-            ].map((r) => (
+            {resultImages.map((r) => (
               <div
                 key={r.title}
                 className="rounded-2xl border overflow-hidden transition-all duration-300 backdrop-blur-xl relative hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
@@ -237,10 +247,11 @@ const Rebound = () => {
                       "linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,32,48,0.9))",
                   }}
                 >
-                  <div className="text-[#a8c7fa] text-center">
-                    <i className="fas fa-chart-line text-4xl mb-2 text-[#4facfe]" />
-                    <p className="text-sm">{r.alt}</p>
-                  </div>
+                  <img
+                    src={r.src}
+                    alt={r.alt}
+                    className="w-full h-full object-contain rounded-lg"
+                  />
                 </div>
                 <div
                   className="p-5 text-center font-medium text-[#00f2fe] relative"

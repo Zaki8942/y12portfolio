@@ -16,7 +16,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/y12portfolio">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/rebound" element={<Rebound />} />
@@ -30,3 +30,4 @@ const App = () => (
 );
 
 export default App;
+
