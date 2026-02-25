@@ -80,12 +80,12 @@ const Rebound = () => {
     {
       title: "Elliptical Orbit Simulation",
       alt: "Elliptical orbit simulation plot",
-      src: `${basePath}rebound/elliptical-orbit-simulation.png`,
+      src: `${basePath}reboundImage/elliptical-orbit-simulation.png`,
     },
     {
       title: "Energy Conservation Test",
       alt: "Energy conservation error plot",
-      src: `${basePath}rebound/energy-conservation-test.png`,
+      src: `${basePath}reboundImage/energy-conservation-test.png`,
     },
   ];
 
