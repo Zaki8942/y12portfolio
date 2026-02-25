@@ -29,7 +29,7 @@ function useAnimatedCounter(target: number, duration = 1500, delay = 1400) {
 const Euler = () => {
   const solved = 101;
   const total = 971;
-  const completed = 74;
+  const completed = 101;
   const percentage = ((solved / total) * 100).toFixed(1);
 
   const solvedCount = useAnimatedCounter(solved);
